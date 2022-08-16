@@ -20,4 +20,8 @@ export class CourseService {
   createCourse(courseRequest: CourseRequest): Observable<Course> {
     return this.http.post<Course>(BASE_URL, courseRequest);
   }
+
+  deleteCourse(id: number) {
+    return this.http.delete(BASE_URL + '/' + id)
+  }
 }

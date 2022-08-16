@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import Student from 'src/app/core/models/Student';
 import { StudentService } from 'src/app/core/services/student.service';
 
@@ -16,7 +17,8 @@ export class StudentComponent implements OnInit {
   currentPageIdBe: number = 0;
   pageSize: number = 5;
 
-  constructor(private studentService: StudentService) { }
+  constructor(private studentService: StudentService,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.loadData()
@@ -39,7 +41,18 @@ export class StudentComponent implements OnInit {
   pageChangeEvent(event: number) {
     this.currentPageIdFe = event;
     this.currentPageIdBe = this.currentPageIdFe - 1;
-    
+
     this.loadData();
+  }
+
+  deleteStudent(id: number) {
+    this.studentService.deleteStudent(id)
+      .subscribe({
+        next: (res) => {
+          this.toastr.success('Deleted!');
+          this.loadData()
+        },
+        error: (err) => this.toastr.error(err.message)
+      })
   }
 }

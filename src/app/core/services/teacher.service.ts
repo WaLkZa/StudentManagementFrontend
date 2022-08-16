@@ -24,4 +24,8 @@ export class TeacherService {
   createTeacher(teacherRequest: TeacherRequest): Observable<Teacher> {
     return this.http.post<Teacher>(BASE_URL, teacherRequest);
   }
+
+  deleteTeacher(id: number) {
+    return this.http.delete(BASE_URL + '/' + id)
+  }
 }

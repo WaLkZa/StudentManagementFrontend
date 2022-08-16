@@ -24,4 +24,8 @@ export class StudentService {
   createStudent(studentRequest: StudentRequest): Observable<Student> {
     return this.http.post<Student>(BASE_URL, studentRequest);
   }
+
+  deleteStudent(id: number) {
+    return this.http.delete(BASE_URL + '/' + id)
+  }
 }

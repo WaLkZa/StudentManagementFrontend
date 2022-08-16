@@ -7,6 +7,7 @@
                     <th>Id</th>
                     <th>Name</th>
                     <th>Degree</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -15,6 +16,7 @@
                     <td>{{teacher.id}}</td>
                     <td>{{teacher.name}}</td>
                     <td>{{teacher.degree}}</td>
+                    <td><a (click)="deleteTeacher(teacher.id)" class="btn btn-danger">Delete</a></td>
                 </tr>
             </tbody>
         </table>
