@@ -1,0 +1,32 @@
+<div class="container">
+    <h2>List of all courses:</h2>
+    <div *ngIf="courses?.length; else elseBlockShow">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Total hours</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr
+                    *ngFor="let course of courses| paginate: { itemsPerPage: pageSize, currentPage: currentPageIdFe, totalItems: totalElements }">
+                    <td>{{course.id}}</td>
+                    <td>{{course.name}}</td>
+                    <td>{{course.totalHours}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="text-center">
+            <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+        </div>
+    </div>
+    <ng-template #elseBlockShow>
+        <div class="text-center alert alert-dismissible alert-danger">
+            No courses in database!
+        </div>
+    </ng-template>
+</div>
+
+<app-add-course (clickButtonEmitter)="fromAddCourseChild()"></app-add-course>

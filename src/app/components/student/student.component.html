@@ -1,0 +1,32 @@
+<div class="container">
+    <h2>List of all students:</h2>
+    <!-- <div *ngIf="students?.length; else elseBlockShow"> -->
+    <div>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr
+                    *ngFor="let student of students| paginate: { itemsPerPage: pageSize, currentPage: currentPageIdFe, totalItems: totalElements }">
+                    <td>{{student.id}}</td>
+                    <td>{{student.name}}</td>
+                    <td>{{student.age}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="text-center">
+            <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+        </div>
+        <button type="button" class="btn btn-primary" [routerLink]="['/add-student']">Add new</button>
+    </div>
+    <!-- <ng-template #elseBlockShow>
+        <div class="text-center alert alert-dismissible alert-danger">
+            No students in database!
+        </div>
+    </ng-template> -->
+</div>

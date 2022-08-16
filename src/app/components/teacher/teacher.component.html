@@ -1,0 +1,43 @@
+<div class="container">
+    <h2>List of all teachers:</h2>
+    <div *ngIf="teachers?.length; else elseBlockShow">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Degree</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr
+                    *ngFor="let teacher of teachers| paginate: { itemsPerPage: pageSize, currentPage: currentPageIdFe, totalItems: totalElements }">
+                    <td>{{teacher.id}}</td>
+                    <td>{{teacher.name}}</td>
+                    <td>{{teacher.degree}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="text-center">
+            <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+        </div>
+        
+        <!-- <div class="form-group">
+            <label for="order" class="col-sm-2 control-label">Order:</label>
+            <div class="col-sm-2">
+                <select class="form-control" id="order">
+                    <option>ASC</option>
+                    <option>DESC</option>
+                </select>
+            </div>
+        </div> -->
+
+    </div>
+    <ng-template #elseBlockShow>
+        <div class="text-center alert alert-dismissible alert-danger">
+            No teachers in database!
+        </div>
+    </ng-template>
+</div>
+
+<app-add-teacher (clickButtonEmitter)="fromAddTeacherChild()"></app-add-teacher>

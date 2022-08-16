@@ -1,0 +1,20 @@
+<div class="container h-50">
+    <div class="row h-100 justify-content-center align-items-center">
+        <form class="col-4" [formGroup]="teacherForm" (ngSubmit)="onSubmit()">
+            <h3>Add New Teacher</h3>
+            <div class="form-group">
+                <label for="name">Name: </label>
+                <input id="name" type="text" class="form-control" placeholder="Enter name" formControlName="name">
+            </div>
+            <div class="form-group">
+                <label for="degree">Degree:</label>
+                <select formControlName="degree" class="form-select form-control">
+                    <option value="BSc">BSc</option>
+                    <option value="MSc">MSc</option>
+                    <option value="PhD">PhD</option>
+                </select>
+            </div>
+            <button type="button" class="btn btn-primary" type="submit" [disabled]="!teacherForm.valid">Submit</button>
+        </form>
+    </div>
+</div>
