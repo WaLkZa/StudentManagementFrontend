@@ -34,12 +34,9 @@ export class AddTeacherComponent implements OnInit {
     }
 
     this.teacherService.createTeacher(teacherRequest)
-      .subscribe({
-        next: (res) => { 
-          this.toastr.success('Created!');
-          this.clickButtonEmitter.emit(teacherRequest); 
-        },
-        error: (err) => this.toastr.error(err.message)
+      .subscribe((res) => {
+        this.toastr.success('Created!');
+        this.clickButtonEmitter.emit(teacherRequest);
       })
   }
 

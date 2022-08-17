@@ -31,10 +31,7 @@ export class AddStudentComponent implements OnInit {
     }
 
     this.studentService.createStudent(studentRequest)
-      .subscribe({
-        next: (res) => this.toastr.success('Created!'),
-        error: (err) => this.toastr.error(err.message)
-      })
+      .subscribe((res) => this.toastr.success('Created!'))
   }
 
   get f() {

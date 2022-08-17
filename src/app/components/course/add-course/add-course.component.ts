@@ -34,12 +34,9 @@ export class AddCourseComponent implements OnInit {
     }
 
     this.courseService.createCourse(courseRequest)
-      .subscribe({
-        next: (res) => {
-          this.toastr.success('Created!');
-          this.clickButtonEmitter.emit(courseRequest);
-        },
-        error: (err) => this.toastr.error(err.message)
+      .subscribe((res) => {
+        this.toastr.success('Created!');
+        this.clickButtonEmitter.emit(courseRequest);
       })
   }
 

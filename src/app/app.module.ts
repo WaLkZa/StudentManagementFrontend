@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -18,6 +18,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AddStudentComponent } from './components/student/add-student/add-student.component';
 import { AddCourseComponent } from './components/course/add-course/add-course.component';
+import { GlobalResponseHandlerInterceptorService } from './core/interceptors/global-response-handler-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,9 @@ import { AddCourseComponent } from './components/course/add-course/add-course.co
     ReactiveFormsModule,
     NgxPaginationModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: GlobalResponseHandlerInterceptorService, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

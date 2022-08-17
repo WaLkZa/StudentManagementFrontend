@@ -47,12 +47,9 @@ export class TeacherComponent implements OnInit {
 
   deleteTeacher(id: number) {
     this.teacherService.deleteTeacher(id)
-      .subscribe({
-        next: (res) => {
-          this.toastr.success('Deleted!');
-          this.loadData()
-        },
-        error: (err) => this.toastr.error(err.message)
+      .subscribe((res) => {
+        this.toastr.success('Deleted!');
+        this.loadData()
       })
   }
 }
