@@ -22,8 +22,8 @@ export class AddCourseComponent implements OnInit {
 
   ngOnInit(): void {
     this.courseForm = this.formBuilder.group({
-      name: new FormControl('', [Validators.required]),
-      totalHours: new FormControl('', [Validators.required])
+      name: new FormControl('', [Validators.required, Validators.minLength(4)]),
+      totalHours: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]*$/)])
     })
   }
 
@@ -41,6 +41,10 @@ export class AddCourseComponent implements OnInit {
         },
         error: (err) => this.toastr.error(err.message)
       })
+  }
+
+  get f() {
+    return this.courseForm.controls;
   }
 
 }

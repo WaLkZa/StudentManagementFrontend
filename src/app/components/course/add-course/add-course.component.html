@@ -6,10 +6,22 @@
                 <label for="name">Name: </label>
                 <input id="name" type="text" class="form-control" placeholder="Enter name" formControlName="name">
             </div>
+            <div class="alert alert-danger" *ngIf="f['name'].errors?.['minlength']">
+                Length must be at least {{f['name'].errors?.['minlength'].requiredLength}} chars!
+            </div>
+            <div class="alert alert-danger" *ngIf="f['name'].touched && f['name'].errors?.['required']">
+                This field is required!
+            </div>
             <div class="form-group">
-                <label for="totalHours">Age: </label>
+                <label for="totalHours">Total hours: </label>
                 <input id="totalHours" type="text" class="form-control" placeholder="Enter total hours"
                     formControlName="totalHours">
+            </div>
+            <div class="alert alert-danger" *ngIf="f['totalHours'].errors?.['pattern']">
+                Only numbers are allowed!
+            </div>
+            <div class="alert alert-danger" *ngIf="f['totalHours'].touched && f['totalHours'].errors?.['required']">
+                This field is required!
             </div>
             <button type="button" class="btn btn-primary" type="submit" [disabled]="!courseForm.valid">Submit</button>
         </form>

@@ -19,8 +19,8 @@ export class AddStudentComponent implements OnInit {
 
   ngOnInit(): void {
     this.studentForm = this.formBuilder.group({
-      name: new FormControl('', [Validators.required]),
-      age: new FormControl('', [Validators.required])
+      name: new FormControl('', [Validators.required, Validators.minLength(4)]),
+      age: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]*$/)])
     })
   }
 
@@ -35,5 +35,9 @@ export class AddStudentComponent implements OnInit {
         next: (res) => this.toastr.success('Created!'),
         error: (err) => this.toastr.error(err.message)
       })
+  }
+
+  get f() {
+    return this.studentForm.controls;
   }
 }

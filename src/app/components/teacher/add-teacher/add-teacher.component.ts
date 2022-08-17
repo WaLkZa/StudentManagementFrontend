@@ -22,7 +22,7 @@ export class AddTeacherComponent implements OnInit {
 
   ngOnInit(): void {
     this.teacherForm = this.formBuilder.group({
-      name: new FormControl('', [Validators.required]),
+      name: new FormControl('', [Validators.required, Validators.minLength(4)]),
       degree: new FormControl('', [Validators.required])
     })
   }
@@ -41,5 +41,9 @@ export class AddTeacherComponent implements OnInit {
         },
         error: (err) => this.toastr.error(err.message)
       })
+  }
+
+  get f() {
+    return this.teacherForm.controls;
   }
 }
