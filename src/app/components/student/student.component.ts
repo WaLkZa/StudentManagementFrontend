@@ -34,7 +34,7 @@ export class StudentComponent implements OnInit {
     this.studentService.getStudentsPage(this.currentPageIdBe, this.pageSize)
       .subscribe(response => {
         this.students = response['content']
-        this.totalElements = (response['totalPages'] + 1) * this.pageSize
+        this.totalElements = response['totalElements']
       })
   }
 

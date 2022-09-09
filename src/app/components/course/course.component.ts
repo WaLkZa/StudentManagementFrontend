@@ -34,7 +34,7 @@ export class CourseComponent implements OnInit {
     this.courseService.getCoursesPage(this.currentPageIdBe, this.pageSize)
       .subscribe(response => {
         this.courses = response['content']
-        this.totalElements = (response['totalPages'] + 1) * this.pageSize
+        this.totalElements = response['totalElements']
       })
   }
 
